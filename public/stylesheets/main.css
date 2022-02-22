@@ -1,0 +1,26 @@
+body {
+  font-family: "Bubblegum Sans", cursive;
+  background-color: antiquewhite;
+}
+h1 {
+  font-family: "Bubblegum Sans", cursive;
+  font-size: 50px;
+}
+a {
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 3px;
+  color: black;
+  font-family: sans-serif;
+  font-family: "Bubblegum Sans", cursive;
+}
+a:hover {
+  background-color: rgb(226, 187, 136);
+}
+label {
+  letter-spacing: 2px;
+}
+button {
+  font-family: "Bubblegum Sans", cursive;
+  letter-spacing: 2px;
+}

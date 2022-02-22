@@ -1,1 +1,37 @@
-<h1>hello world</h1>
+<header>
+<h1>minyl</h1>
+</header>
+
+
+<% if logged_in? %>
+<h2>Welcome back </h2>
+
+<form action="/sessions" method= "POST">
+    <input type="hidden" name="_method" value="delete">
+
+    <button>Logout</button>
+
+</form>
+<h3>Add to your collection</h3>
+<form action="/add_records" method="POST">
+
+    <label for="">Artist Name</label>
+    <input type="text" name="artist_name">
+
+    <label for="">Album Name</label>
+    <input type="text" name="album_name">
+
+    <label for="">Year</label>
+    <input type="number" name="year">  
+
+    <label for="">Album Art</label>
+    <input type="text" name="img_url">
+
+    <button>Add</button>  
+
+</form>
+
+<% else %>
+<a href="/users/sign_up">Sign Up</a>
+<a href="/login">Log In</a>
+<% end %>
