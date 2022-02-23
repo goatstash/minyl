@@ -1,37 +1,73 @@
-<header>
 <h1>minyl</h1>
+
+    <% if logged_in? %>
+    <h2>Welcome back</h2>
+
+<header>    
+    <a href="/add_records">Add to your collection</a> 
+
+    <a href="/edit_top_five">Edit Top 5</a>
+
+    <a href="/edit_collection">Edit Collection</a>
+
+    <a href="/edit_arrival">Edit no.1 Monthly Arrival</a></header>
+
+    <form action="/sessions" method= "POST">
+        <input type="hidden" name="_method" value="delete">
+
+        <button>Logout</button>
+    </form>
 </header>
 
+<section id="myCollection">  
+    <div class="collection">
 
-<% if logged_in? %>
-<h2>Welcome back </h2>
+        <h2>My Collection</h2>
 
-<form action="/sessions" method= "POST">
-    <input type="hidden" name="_method" value="delete">
+        <% records.each do |vinyl| %>
 
-    <button>Logout</button>
+            <h3><%= vinyl['artist_name']  %>  <%= vinyl['album_name'] %></h3>
+            <img src="<%= vinyl['img_url'] %>" alt="">
 
-</form>
-<h3>Add to your collection</h3>
-<form action="/add_records" method="POST">
+        <% end %>
 
-    <label for="">Artist Name</label>
-    <input type="text" name="artist_name">
+    </div>
+</section>  
 
-    <label for="">Album Name</label>
-    <input type="text" name="album_name">
+<section id="myTop5">
+    <div class="top5">
 
-    <label for="">Year</label>
-    <input type="number" name="year">  
+        <h2>My Top 5</h2>
 
-    <label for="">Album Art</label>
-    <input type="text" name="img_url">
+        <% top_5.each do |fav| %>
 
-    <button>Add</button>  
+        <div>
+            <h3><%= fav['artist_name'] %> <%= fav['album_name'] %></h3>
+            <img src="<%= fav['img_url'] %>" alt="">
+        </div>
 
-</form>
+            <form action="remove_from_top_5" method="POST">
 
-<% else %>
-<a href="/users/sign_up">Sign Up</a>
-<a href="/login">Log In</a>
-<% end %>
+                <input type="hidden" name="fav_id" value="<%= fav['id'] %>">
+
+                <button>X</button>
+
+            </form>
+        <% end %>
+
+    </div>
+</section>
+
+<section id="noArrival">
+    <div class="arrival">
+
+        <h2>My no.1 Arrival This Month</h2>
+
+    <% else %>
+
+<header>
+        <a href="/users/sign_up">Sign Up</a>
+        <a href="/login">Log In</a>
+
+    <% end %>
+</header>

@@ -6,41 +6,38 @@ require_relative 'db/db'
 
 enable :sessions
 
-require_relative 'models/user'
-
+require_relative 'controllers/records_controller'
 require_relative 'controllers/sessions_controller'
 require_relative 'controllers/users_controller'
-
 require_relative 'helpers/sessions_helper'
+require_relative 'models/records'
+require_relative 'models/user'
 
 
 get '/' do
-  erb :index
+  user_id = session['user_id']
+  records = run_sql("SELECT * FROM collection WHERE user_id = $1 ORDER BY artist_name", [user_id] )
+  top_5 = run_sql("SELECT * FROM collection WHERE top_5 = true LIMIT 5")
+
+  erb :index, locals: {
+    records: records,
+    top_5: top_5
+  }
 end
 
 get '/users/sign_up' do
   erb :'/users/sign_up'
 end
 
-# post '/records' do
-#   artist_name = params["artist_name"]
-#   album_name = params["album_name"]
-#   year = params["year"]
-#   img_url = params["img_url"]
-
-#   erb :'/records'
-#   add_to_collection(artist_name, album_name, year, img_url)
-
-#   redirect '/'
-# end
-
-# get '/records' do
-#   "Hello World"
-# end
-
-
-post '/add_records' do
-  "Hello World"
-  redirect '/'
+get '/add_records' do
+  erb :'/records/add_records'
 end
+
+get '/edit_arrival' do
+  
+  erb :'/records/edit_arrival'
+end
+
+
+
 

@@ -1,0 +1,13 @@
+<h3>Edit Top 5</h3>
+
+<% records.each do |vinyl| %>
+    <h3><%= vinyl['artist_name']  %>  <%= vinyl['album_name'] %></h3>
+    <img src="<%= vinyl['img_url'] %>" alt="">
+
+    <form action="/edit_favourites" method="POST">
+
+        <input type="hidden" name="vinyl_id" value="<%= vinyl['id'] %>">
+        
+        <button>Add to top 5</button>
+    </form>
+<% end %>

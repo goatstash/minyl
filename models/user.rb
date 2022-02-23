@@ -11,7 +11,7 @@ def find_user_by_email(email)
         nil
     end
 end
-
-def find_user_by_id(id)
-    run_sql("SELECT * FROM users WHERE id = $1", [id])[0]
+# 
+def find_user_by_id(user_id)
+    run_sql("SELECT * FROM users WHERE user_id = $1", [user_id])[0]
 end
