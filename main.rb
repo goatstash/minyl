@@ -17,9 +17,9 @@ require_relative 'models/user'
 get '/' do
   user_id = session['user_id']
   records = run_sql("SELECT * FROM collection WHERE user_id = $1 ORDER BY artist_name", [user_id] )
-
-  top_5 = run_sql("SELECT * FROM collection WHERE top_5 = true LIMIT 5")
-
+# 
+  top_5 = run_sql("SELECT * FROM collection WHERE top_5 = true AND user_id = $1 LIMIT 5", [user_id])
+# 
   arrival = run_sql("SELECT * FROM arrival WHERE user_id = $1 ORDER BY artist_name LIMIT 1", [user_id] )
 
   erb :index, locals: {

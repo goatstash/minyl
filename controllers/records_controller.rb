@@ -22,6 +22,9 @@ post '/edit_favourites' do
     vinyl_id = params['vinyl_id']
     update_to_top_5(vinyl_id)
     redirect '/'
+    erb :'records/edit_top_five', locals: {
+        vinyl_id: vinyl_id
+    }
 end
 
 post '/remove_from_top_5' do
@@ -60,7 +63,7 @@ end
     id = params["id"]
 
     run_sql("DELETE FROM arrival WHERE id = $1", [id])
-    
+
     redirect '/'
 end
 
