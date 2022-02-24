@@ -1,73 +1,81 @@
-<h1>minyl</h1>
 
-    <% if logged_in? %>
+<img src="https://scontent-syd2-1.xx.fbcdn.net/v/t1.15752-9/274113850_673364380485459_1077356973253538626_n.png?_nc_cat=105&ccb=1-5&_nc_sid=ae9488&_nc_ohc=AizJdQKc83wAX-MumBI&tn=9KISyor-vOFY9gGd&_nc_ht=scontent-syd2-1.xx&oh=03_AVLt0G0RnMan3KnJ_bY8724dlW2SQO__Jk1iNpmgiLcjDg&oe=623B9C68" alt="" class="logo">
+
+
+<% if logged_in? %>
     <h2>Welcome back</h2>
 
-<header>    
-    <a href="/add_records">Add to your collection</a> 
+    <header class="header">    
+        <a href="/add_records" class="add_records">Add to your collection</a> 
 
-    <a href="/edit_top_five">Edit Top 5</a>
+        <a href="/edit_top_five" class="edit_top5">Edit Top 5</a>
 
-    <a href="/edit_collection">Edit Collection</a>
+        <a href="/edit_collection" class="edit_collection">Edit Collection</a>
 
-    <a href="/edit_arrival">Edit no.1 Monthly Arrival</a></header>
+        <a href="/edit_arrival" class="edit_arrival">Edit no.1 Monthly Arrival</a></header>
 
-    <form action="/sessions" method= "POST">
-        <input type="hidden" name="_method" value="delete">
+        <form action="/sessions" method= "POST">
+            <input type="hidden" name="_method" value="delete">
 
-        <button>Logout</button>
-    </form>
-</header>
+            <button class = "logout">Logout</button>
+        </form>
+    </header>
+    <h2>My no.1 Arrival This Month</h2>
+    <div class="container" id="one">
+        
+        <% arrival.each do |no1| %>
+            <div class="arrival">
+                <p><%= no1['artist_name'] %> </p> <img src="<%= no1['img_url'] %>" alt="">
+                <p><%= no1['album_name'] %></p>
+                
 
-<section id="myCollection">  
-    <div class="collection">
+                <form action="/delete_from_arrival" method="POST">
 
-        <h2>My Collection</h2>
-
-        <% records.each do |vinyl| %>
-
-            <h3><%= vinyl['artist_name']  %>  <%= vinyl['album_name'] %></h3>
-            <img src="<%= vinyl['img_url'] %>" alt="">
-
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="id" value="<%= no1['id'] %>">
+            
+                    <button>X</button>
+                </form>
+            </div>
         <% end %>
+        
+    </div> 
 
-    </div>
-</section>  
-
-<section id="myTop5">
-    <div class="top5">
-
-        <h2>My Top 5</h2>
-
+    <h2>My Top 5</h2>
+    <div class="container" id="two">           
         <% top_5.each do |fav| %>
+            <div class="top5">
+                <p> <%= fav['artist_name'] %> </p><img src="<%= fav['img_url'] %>" alt=""><p><%= fav['album_name'] %></p>
+                
+            
+                <form action="remove_from_top_5" method="POST">
 
-        <div>
-            <h3><%= fav['artist_name'] %> <%= fav['album_name'] %></h3>
-            <img src="<%= fav['img_url'] %>" alt="">
-        </div>
+                    <input type="hidden" name="fav_id" value="<%= fav['id'] %>">
 
-            <form action="remove_from_top_5" method="POST">
+                    <button>X</button>
 
-                <input type="hidden" name="fav_id" value="<%= fav['id'] %>">
-
-                <button>X</button>
-
-            </form>
+                </form>
+            </div>
         <% end %>
-
     </div>
-</section>
 
-<section id="noArrival">
-    <div class="arrival">
-
-        <h2>My no.1 Arrival This Month</h2>
-
-    <% else %>
-
-<header>
+    <h2>My Collection</h2>
+    <div class="container" id="three">
+        
+        <% records.each do |vinyl| %>
+            <div class="collection" id="three">        
+                <p><%= vinyl['artist_name']  %> </p>
+                <img src="<%= vinyl['img_url'] %>" alt="">
+                <p><%= vinyl['album_name'] %></p>
+            </div> 
+        <% end %>
+    </div>      
+      
+<% else %>
+<html class="html">
+    <header>
         <a href="/users/sign_up">Sign Up</a>
         <a href="/login">Log In</a>
-
-    <% end %>
-</header>
+    </header>
+<% end %>
+</html>

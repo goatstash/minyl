@@ -9,3 +9,7 @@ end
 def update_false(fav_id)
     run_sql("UPDATE collection SET top_5 = false WHERE id = $1", [fav_id])
 end
+
+def add_to_arrival(artist_name, user_id, album_name, year, img_url)
+    run_sql("INSERT INTO arrival(artist_name, user_id, album_name, year, img_url) VALUES($1, $2, $3, $4, $5)", [artist_name, user_id, album_name, year, img_url])
+end

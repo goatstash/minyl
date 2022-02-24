@@ -17,11 +17,15 @@ require_relative 'models/user'
 get '/' do
   user_id = session['user_id']
   records = run_sql("SELECT * FROM collection WHERE user_id = $1 ORDER BY artist_name", [user_id] )
+
   top_5 = run_sql("SELECT * FROM collection WHERE top_5 = true LIMIT 5")
+
+  arrival = run_sql("SELECT * FROM arrival WHERE user_id = $1 ORDER BY artist_name LIMIT 1", [user_id] )
 
   erb :index, locals: {
     records: records,
-    top_5: top_5
+    top_5: top_5,
+    arrival: arrival
   }
 end
 
@@ -34,10 +38,8 @@ get '/add_records' do
 end
 
 get '/edit_arrival' do
-  
   erb :'/records/edit_arrival'
 end
-
 
 
 

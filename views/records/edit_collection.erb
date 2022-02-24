@@ -1,14 +1,20 @@
 <h3>Edit Collection</h3>
 
-<% records.each do |vinyl| %>
-    <h3><%= vinyl['artist_name']  %>  <%= vinyl['album_name'] %></h3>
-    <img src="<%= vinyl['img_url'] %>" alt="">
+<div class="container" id="five">
 
-    <form action="/delete_from_collection" method="POST">
+    <% records.each do |vinyl| %>
+            <div class="collection" id="five">
+            <p><%= vinyl['artist_name']  %>  </p>
+            <img src="<%= vinyl['img_url'] %>" alt="">
+            <p><%= vinyl['album_name'] %></p>
 
-        <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="id" value="<%= vinyl['id'] %>">
-        
-        <button>Remove From Collection</button>
-    </form>
-<% end %>
+            <form action="/delete_from_collection" method="POST">
+
+                <input type="hidden" name="_method" value="delete">
+                <input type="hidden" name="id" value="<%= vinyl['id'] %>">
+                
+                <button>Remove From Collection</button>
+            </form>
+        </div>
+    <% end %>
+</div>   
