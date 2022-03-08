@@ -1,4 +1,4 @@
-https://l.facebook.com/l.php?u=https%3A%2F%2Ffrozen-chamber-83680.herokuapp.com%2F%3Ffbclid%3DIwAR3TAxOZ-Z_9u9d4odL0lNIfaoKvo9roSFJfwKV5bpZAFafzaSUfSIl---4&h=AT0yUYR9tX6iGZdAPg_4wUSfZo7VfucPmDf6-2wgZdgy6isyny8BT_oBUVL6z3dOpQYw0xiCVrYpHvQ_sqOZJiVOFUy24zUPT0r69_KFEtZ1NWDxmchgy2f6H3Q66vkBdAD-VZTl
+https://frozen-chamber-83680.herokuapp.com/
 
 minyl is a social network for vinyl collectors to show off their collection, top albums and find of the month.
 
